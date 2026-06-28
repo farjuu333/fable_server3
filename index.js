@@ -117,7 +117,16 @@ app.get("/", (req, res) => {
   res.send("Server is Running Fine!");
 });
 // in ebooks get 6 books in feature
-
+app.get("/api/ebooks/featured", async (req, res) => {
+  try {
+    const ebooks = await Ebook.find({ status: "published" })
+      .sort({ createdAt: -1 })
+      .limit(6);
+    res.json(ebooks);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 // 2. GET All Ebooks (with search, filter, sort, pagination)
 app.get("/api/ebooks", async (req, res) => {
