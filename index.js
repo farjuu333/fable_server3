@@ -10,7 +10,7 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: ["http://localhost:3000","https://fable-client3.vercel.app"],
+    origin: ["https://fable-client3.vercel.app"],
     credentials: true,
   }),
 );
