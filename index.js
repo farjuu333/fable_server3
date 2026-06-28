@@ -24,11 +24,11 @@ mongoose
     dbName: "fable_client_db",
   })
   .then(() => console.log(" MongoDB Connected to fable_client_db"))
-  .catch((err) => console.error(" MongoDB Error:", err));
+  .catch((err) => console.error(" MongoDB connected failed:", err));
 
-// ==================== MODELS ====================
 
-// Ebook Model
+
+// Ebook database table
 const ebookSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
@@ -69,7 +69,7 @@ const ebookSchema = new mongoose.Schema(
 
 const Ebook = mongoose.model("Ebook", ebookSchema, "ebooks");
 
-// Transaction Model
+// Transaction database table
 const transactionSchema = new mongoose.Schema(
   {
     transactionId: { type: String, required: true, unique: true },
