@@ -24,7 +24,7 @@ mongoose
     dbName: "fable_client_db",
   })
   .then(() => console.log(" MongoDB Connected to fable_client_db"))
-  .catch((err) => console.error("❌ MongoDB Error:", err));
+  .catch((err) => console.error(" MongoDB Error:", err));
 
 // ==================== MODELS ====================
 
@@ -110,24 +110,14 @@ const bookmarkSchema = new mongoose.Schema(
 );
 const Bookmark = mongoose.model("Bookmark", bookmarkSchema);
 
-// ==================== ROUTES ====================
 
-// Test Route
+
+// check all routes 
 app.get("/", (req, res) => {
-  res.send("Fable Server is Running!");
+  res.send("Server is Running Fine!");
 });
+// in ebooks get 6 books in feature
 
-// 1. GET Featured Ebooks (latest 6)
-app.get("/api/ebooks/featured", async (req, res) => {
-  try {
-    const ebooks = await Ebook.find({ status: "published" })
-      .sort({ createdAt: -1 })
-      .limit(6);
-    res.json(ebooks);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
 
 // 2. GET All Ebooks (with search, filter, sort, pagination)
 app.get("/api/ebooks", async (req, res) => {
@@ -277,8 +267,13 @@ app.get("/api/dashboard/transactions", async (req, res) => {
 const multer = require("multer");
 const upload = multer({ storage: multer.memoryStorage() });
 
+
 app.post("/api/upload", upload.single("image"), async (req, res) => {
   try {
+// add
+    console.log("📤 Upload request received");
+    console.log("File:", req.file ? req.file.originalname : "No file");
+
     const formData = new FormData();
     formData.append("image", req.file.buffer.toString("base64"));
 
