@@ -355,7 +355,7 @@ app.post("/api/complete-purchase", async (req, res) => {
   }
 });
 
-// User's purchased ebooks
+//  purchased ebooks
 app.get("/api/dashboard/user/purchases", async (req, res) => {
   try {
     const { email } = req.query;
@@ -381,7 +381,7 @@ app.post("/api/bookmarks", async (req, res) => {
   }
 });
 
-// Remove bookmark
+// delete bookmark
 app.delete("/api/bookmarks", async (req, res) => {
   try {
     const { email, ebookId } = req.query;
@@ -452,7 +452,7 @@ app.delete("/api/dashboard/users", async (req, res) => {
   }
 });
 
-// Admin: Get all ebooks (published + unpublished)
+// (published + unpublished)
 app.get("/api/admin/ebooks", async (req, res) => {
   try {
     const ebooks = await Ebook.find({}).sort({ createdAt: -1 });
@@ -462,7 +462,7 @@ app.get("/api/admin/ebooks", async (req, res) => {
   }
 });
 
-// Admin: Toggle publish/unpublish
+//  publish/unpublish
 app.put("/api/admin/ebooks/:id/toggle-status", async (req, res) => {
   try {
     const ebook = await Ebook.findById(req.params.id);
@@ -475,16 +475,16 @@ app.put("/api/admin/ebooks/:id/toggle-status", async (req, res) => {
   }
 });
 
-// Admin: Delete ebook
+// delete book
 app.delete("/api/admin/ebooks/:id", async (req, res) => {
   try {
     await Ebook.findByIdAndDelete(req.params.id);
-    res.json({ message: "Ebook deleted" });
+    res.json({ message: "Ebook deleted by Admin" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
-// ==================== START SERVER ====================
+// surver running port
 app.listen(port, () => {
   console.log(`🚀 Server running on port ${port}`);
 });
