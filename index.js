@@ -128,7 +128,7 @@ app.get("/api/ebooks/featured", async (req, res) => {
   }
 });
 
-// 2. GET All Ebooks (with search, filter, sort, pagination)
+// 2. operation search, filter, sort, pagination in all books
 app.get("/api/ebooks", async (req, res) => {
   try {
     const {
@@ -216,7 +216,7 @@ app.delete("/api/ebooks/:id", async (req, res) => {
   }
 });
 
-// ==================== DASHBOARD ROUTES ====================
+
 
 // Get Dashboard Stats
 app.get("/api/dashboard/stats", async (req, res) => {
@@ -279,9 +279,8 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 app.post("/api/upload", upload.single("image"), async (req, res) => {
   try {
-// add
-    console.log("📤 Upload request received");
-    console.log("File:", req.file ? req.file.originalname : "No file");
+
+   
 
     const formData = new FormData();
     formData.append("image", req.file.buffer.toString("base64"));
